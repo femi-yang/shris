@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-autowire="byName">
+
+	<bean id="homepageshow"
+		class="com.mes.server.action.web.HomePageShowAction"></bean>
+	<bean id="clientversionlastget"
+		class="com.mes.server.action.web.ClientVersionLastGetAction"></bean>
+	<bean id="userlogin"
+		class="com.mes.server.action.web.user.UserLoginAction"></bean>
+	<bean id="userinfoget"
+		class="com.mes.server.action.web.user.BMSEmployeeInfoAction"></bean>
+	<bean id="userinfosecretget"
+		class="com.mes.server.action.web.user.BMSEmployeeSecretAction"></bean>	
+		
+	<bean id="userAllInfos"
+		class="com.mes.server.action.web.user.BMSEmployeeAllAction"></bean>
+	<bean id="homepagegroupall"
+		class="com.mes.server.action.web.homepage.HomePageGroupAllAction"></bean>
+	<bean id="homepagemoduleall"
+		class="com.mes.server.action.web.homepage.HomePageModuleAllAction"></bean>
+	<bean id="homepagegroupupdate"
+		class="com.mes.server.action.web.homepage.HomePageGroupUpdateAction"></bean>
+ 
+
+	<bean id="homepagemoduleupdate"
+		class="com.mes.server.action.web.homepage.HomePageModuleUpdateAction"></bean>
+
+
+	<!-- 配料 -->
+
+	<!-- <bean id="getmaterialtasks" class="com.mes.server.action.web.GetMaterialTasksAction"></bean> 
+		<bean id="getmaterialtasksinfo" class="com.mes.server.action.web.GetMaterialTasksInfoAction"></bean> 
+		<bean id="getmaterialdetails" class="com.mes.server.action.web.GetMaterialDetailsAction"></bean> 
+		<bean id="getmaterialdetail" class="com.mes.server.action.web.GetMaterialDetailAction"></bean> 
+		<bean id="getmaterialsubmit" class="com.mes.server.action.web.GetMaterialSubmitAction"></bean> 
+		<bean id="getmaterialstatussubmit" class="com.mes.server.action.web.GetMaterialStatusSubmitAction"></bean> 
+		领料 <bean id="takematerialtasks" class="com.mes.server.action.web.TakeMaterialTasksAction"></bean> 
+		<bean id="takematerialgetfeedboxdetail" class="com.mes.server.action.web.TakeMaterialGetFeedBoxDetailAction"></bean> 
+		<bean id="takematerialdetails" class="com.mes.server.action.web.TakeMaterialDetailsAction"></bean> 
+		<bean id="takematerialsubmit" class="com.mes.server.action.web.TakeMaterialSubmitAction"></bean> 
+		报工 <bean id="reporttasks" class="com.mes.server.action.web.ReportTasksAction"></bean> 
+		<bean id="reporttaskitem" class="com.mes.server.action.web.ReportTaskItemAction"></bean> 
+		<bean id="reporttaskdetails" class="com.mes.server.action.web.ReportTaskDetailsAction"></bean> 
+		<bean id="reporttaskdetailitem" class="com.mes.server.action.web.ReportTaskDetailItemAction"></bean> 
+		<bean id="reporttasksubmit" class="com.mes.server.action.web.ReportTaskSubmitAction"></bean> 
+		质检 <bean id="qualitytasklist" class="com.mes.server.action.web.QualityTaskListAction"></bean> 
+		<bean id="qualitydetaillist" class="com.mes.server.action.web.QualityDetailListAction"></bean> 
+		<bean id="qualitysubmitget" class="com.mes.server.action.web.QualitySubmitGetAction"></bean> 
+		<bean id="qualitysubmitcheck" class="com.mes.server.action.web.QualitySubmitCheckAction"></bean> 
+		Shris质检 <bean id="shrisqualitytasklist" class="com.mes.server.action.web.shris.taskpart.QualityTaskListAction"></bean> 
+		<bean id="shrisqualitydetaillist" class="com.mes.server.action.web.shris.taskpart.QualityDetailListAction"></bean> 
+		<bean id="shrisqualitydetaillistbytaskid" class="com.mes.server.action.web.shris.taskpart.QualityDetailListByTaskIDAction"></bean> 
+		<bean id="shrisqualitydetailbyboxid" class="com.mes.server.action.web.shris.taskpart.QualityTaskByBoxIDAction"></bean> 
+		<bean id="shrisqualityrecsheetsubmit" class="com.mes.server.action.web.shris.taskpart.QualityRecSheetSubmitAction"></bean> 
+		<bean id="shrisqualitychecksheetsubmit" class="com.mes.server.action.web.shris.taskpart.QualityCheckSheetSubmitAction"></bean> 
+		<bean id="shrisqualitytaskitemlist" class="com.mes.server.action.web.shris.taskpart.QualityTaskItemListAction"></bean> 
+		<bean id="shrisqualitytaskitemlistbytaskid" class="com.mes.server.action.web.shris.taskpart.QualityTaskItemListByTaskIDAction"></bean> 
+		<bean id="shrisqualitytaskitemlistbyproductid" class="com.mes.server.action.web.shris.taskpart.QualityTaskItemListByProductIDAction"></bean> 
+		<bean id="shrisstorageboxremove" class="com.mes.server.action.web.shris.taskpart.StorageBoxRemoveAction"></bean> 
+		<bean id="shrisallsheetremove" class="com.mes.server.action.web.shris.taskpart.AllSheetRemoveAction"></bean> 
+		<bean id="shrisstoragesheetremove" class="com.mes.server.action.web.shris.taskpart.StorageSheetRemoveAction"></bean> 
+		<bean id="shrisstoragesheetstatuschange" class="com.mes.server.action.web.shris.taskpart.StorageSheetStatusChangeAction"></bean> 
+		<bean id="shrisstoragesheetbyid" class="com.mes.server.action.web.shris.taskpart.StorageSheetByIDAction"></bean> 
+		<bean id="shrisqualityproducttaskbyuserid" class="com.mes.server.action.web.shris.taskpart.QualityProductTaskByUserIDAction"></bean> 
+		<bean id="shrisstoragesheetlist" class="com.mes.server.action.web.shris.taskpart.StorageSheetListAction"></bean> 
+		<bean id="shrisstoragesheetsubmit" class="com.mes.server.action.web.shris.taskpart.StorageSheetSubmitAction"></bean> 
+		<bean id="shrisstoragesheetbyitemid" class="com.mes.server.action.web.shris.taskpart.StorageSheetByItemIDAction"></bean> 
+		Shris入库 <bean id="shrisstoragesheetlistbystorekeeper" class="com.mes.server.action.web.shris.storage.StorageSheetListByStorekeeperAction"></bean> 
+		<bean id="shrisstoragesheetitemlist" class="com.mes.server.action.web.shris.storage.StorageSheetItemListAction"></bean> 
+		<bean id="shrisstoragesheetbyidstore" class="com.mes.server.action.web.shris.storage.StorageSheetByIDStoreAction"></bean> 
+		<bean id="shristoragesheetitemsubmit" class="com.mes.server.action.web.shris.storage.StorageSheetItemSubmitAction"></bean> 
+		<bean id="shrisstoragesheetrecsubmit" class="com.mes.server.action.web.shris.storage.StorageSheetRecSubmitAction"></bean> 
+		<bean id="shristaskprocessbystorekeeper" class="com.mes.server.action.web.shris.storage.TaskProcessByStorekeeperAction"></bean> 
+		shris返修 <bean id="shrisgettaskrepair" class="com.mes.server.action.web.shris.repair.TaskRepairGetAction"></bean> 
+		<bean id="shrisrepairsubmit" class="com.mes.server.action.web.shris.repair.TaskRepairSubmitAction"></bean> 
+		shris 工装 <bean id="shrisdevicepartgettasks" class="com.mes.server.action.web.shris.devicepart.DevicePartGetTasksAction"></bean> 
+		<bean id="shrisdevicepartgettaskitems" class="com.mes.server.action.web.shris.devicepart.DevicePartGetTaskItemsAction"></bean> 
+		<bean id="shrisdevicepartitemsubmit" class="com.mes.server.action.web.shris.devicepart.DevicePartTaskItemSubmitAction"></bean> 
+		<bean id="shrisdevcieparttaskitemlistbydeviceid" class="com.mes.server.action.web.shris.devicepart.DevicePartGetTaskItemsByDeviceIDAction"></bean> 
+		shris问题反馈 <bean id="shrisfeedbacksubmit" class="com.mes.server.action.web.shris.feedback.FeedbackSubmitAction"></bean> 
+		shris消息 <bean id="shrismessagecount" class="com.mes.server.action.web.shris.message.MessageCountAction"></bean> 
+		<bean id="shrisgetmessagelist" class="com.mes.server.action.web.shris.message.MessageListAction"></bean> 
+		<bean id="shriserrorgetmessagelist" class="com.mes.server.action.web.shris.message.ErrorMessageListAction"></bean> 
+		通用任务 <bean id="usertasklist" class="com.mes.server.action.web.shris.details.TaskListAction"></bean> 
+		<bean id="useronlinelist" class="com.mes.server.action.web.shris.details.UserOnLineListAction"></bean> 
+		<bean id="getshiftid" class="com.mes.server.action.web.shris.details.GetShiftIDAction"></bean> 
+		<bean id="usermessagelist" class="com.mes.server.action.web.shris.details.MessageListAction"></bean> 
+		员工请假 <bean id="employeeleavelist" class="com.mes.server.action.web.shris.leave.EmployeeLeaveListAction"></bean> 
+		<bean id="getleavebyid" class="com.mes.server.action.web.shris.leave.GetLeaveByIDAction"></bean> 
+		<bean id="getapproverlist" class="com.mes.server.action.web.shris.leave.GetApproverListAction"></bean> 
+		<bean id="leavesubmit" class="com.mes.server.action.web.shris.leave.LeaveSubmitAction"></bean> 
+		<bean id="leavecancel" class="com.mes.server.action.web.shris.leave.LeaveCancelAction"></bean> 
+		<bean id="leaveapprover" class="com.mes.server.action.web.shris.leave.LeaveApproverAction"></bean> -->
+</beans>

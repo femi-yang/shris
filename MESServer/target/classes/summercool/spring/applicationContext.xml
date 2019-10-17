@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<!-- 自动扫描web包 ,将带有注解的类 纳入spring容器管理 -->
+	<context:component-scan
+		base-package="com.mes.server.action"></context:component-scan>
+
+	<context:component-scan
+		base-package="com.mes.server.action.dao"></context:component-scan>
+
+	<!-- 引入Config配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:config/config.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+
+	<!-- 设置 MultipartResolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="maxUploadSize" value="20000000" />
+		<property name="maxInMemorySize" value="1000000" />
+		<property name="uploadTempDir"
+			value="file:${mes.server.temporary.file.dir}" />
+
+	</bean>
+
+	<bean class="com.mes.server.utils.MyApplicationContextUtil"></bean>
+
+	<bean name="defaultExceptionHandler"
+		class="com.mes.server.handler.DefaultExceptionHandler">
+		<property name="order" value="0" />
+	</bean>
+	<!-- 配置Mysql数据库 -->
+	<bean id="DataSourceMysql"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/iplant_mes?serverTimezone=UTC&amp;characterEncoding=utf8" />
+		<property name="user" value="root" />
+		<property name="password" value="shris" /> 
+		<property name="initialPoolSize" value="5" /><!-- 在启动连接池初始创建的数据库连接，默认为0 -->
+		<property name="maxPoolSize" value="100" /><!-- 最大连接数 -->
+		<property name="acquireIncrement" value="10" /><!-- 当连接池中的连接用完时，C3P0一次性创建新连接的数目 -->
+		<property name="minPoolSize" value="5" /><!-- 空闲时的最小连接数，低于这个数量会创建新连接，默认为0 -->
+		<property name="maxIdleTime" value="10000" /><!-- 最大空闲时间，超过空闲时间的连接将被丢弃。为0或负数则永不丢弃-->
+		<property name="numHelperThreads" value="3" /><!-- C3P0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性能，通过多线程实现多个操作同时被执行-->
+	</bean>
+	<!-- 配置SqlServer数据库 -->
+	<bean id="datasourceSqlServer"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass"
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="jdbcUrl"
+			value="jdbc:microsoft.sqlserver://127.0.0.1:1433;DatabaseName=zhidao" />
+		<property name="user" value="root" />
+		<property name="password" value="123456" />
+		<property name="initialPoolSize" value="5" /><!-- 在启动连接池初始创建的数据库连接，默认为0 -->
+		<property name="maxPoolSize" value="100" /><!-- 最大连接数 -->
+		<property name="acquireIncrement" value="10" /><!-- 当连接池中的连接用完时，C3P0一次性创建新连接的数目 -->
+		<property name="minPoolSize" value="5" /><!-- 空闲时的最小连接数，低于这个数量会创建新连接，默认为0 -->
+		<property name="maxIdleTime" value="10000" /><!-- 最大空闲时间，超过空闲时间的连接将被丢弃。为0或负数则永不丢弃-->
+		<property name="numHelperThreads" value="3" /><!-- C3P0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性能，通过多线程实现多个操作同时被执行-->
+	</bean>
+	<!-- 配置Oracle数据库 -->
+	<bean id="datasourceOracle"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="jdbcUrl"
+			value="jdbc:oracle:thin:@localhost:1521/orcl?characterEncoding=utf8" />
+		<property name="user" value="root" />
+		<property name="password" value="123456" />
+		<property name="initialPoolSize" value="5" /><!-- 在启动连接池初始创建的数据库连接，默认为0 -->
+		<property name="maxPoolSize" value="100" /><!-- 最大连接数 -->
+		<property name="acquireIncrement" value="10" /><!-- 当连接池中的连接用完时，C3P0一次性创建新连接的数目 -->
+		<property name="minPoolSize" value="5" /><!-- 空闲时的最小连接数，低于这个数量会创建新连接，默认为0 -->
+		<property name="maxIdleTime" value="10000" /><!-- 最大空闲时间，超过空闲时间的连接将被丢弃。为0或负数则永不丢弃-->
+		<property name="numHelperThreads" value="3" /><!-- C3P0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性能，通过多线程实现多个操作同时被执行-->
+	</bean>
+	<!-- 配置Access数据库 -->
+	<bean id="datasourceAccess"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass"
+			value="sun.jdbc.odbc.JdbcOdbcDriver" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/mooc?characterEncoding=utf8" />
+		<property name="user" value="root" />
+		<property name="password" value="123456" />
+		<property name="initialPoolSize" value="5" /><!-- 在启动连接池初始创建的数据库连接，默认为0 -->
+		<property name="maxPoolSize" value="100" /><!-- 最大连接数 -->
+		<property name="acquireIncrement" value="10" /><!-- 当连接池中的连接用完时，C3P0一次性创建新连接的数目 -->
+		<property name="minPoolSize" value="5" /><!-- 空闲时的最小连接数，低于这个数量会创建新连接，默认为0 -->
+		<property name="maxIdleTime" value="10000" /><!-- 最大空闲时间，超过空闲时间的连接将被丢弃。为0或负数则永不丢弃-->
+		<property name="numHelperThreads" value="3" /><!-- C3P0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性能，通过多线程实现多个操作同时被执行-->
+	</bean>
+
+
+
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="DataSourceMysql"></property>
+	</bean>
+	<bean id="nameJdbcTemplate"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="DataSourceMysql"></constructor-arg>
+	</bean>
+
+
+	
+</beans>

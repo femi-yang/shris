@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<configuration scan="true" scanPeriod="1000" debug="false">
+
+    <!-- 模块名称配置项 -->
+    <property name="MODULE-NAME" value="netdragon-spider"/>
+	
+	<!-- 普通日志等级 -->
+    <property name="GENERAL-LEVEL" value="${mes.server.generalLoggingLevel}"/>
+    
+    <!-- 拨测日志等级 -->
+    <property name="DIALUP-LEVEL" value="${mes.server.dialupLoggingLevel}"/>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+		</layout>
+	</appender>
+	<appender name="ERROR-ALL" class="org.summercool.web.util.AsyncRollingFileAppender">
+		<File>${mes.server.log.loggingRoot}/all-error.log</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${mes.server.log.loggingRoot}/all-error.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+	<appender name="ORDER-INFO" class="org.summercool.web.util.AsyncRollingFileAppender">
+		<File>${mes.server.log.loggingRoot}/order-info.log</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} -- %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${mes.server.log.loggingRoot}/order-info.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+	
+	<appender name="JETTY-ALL" class="org.summercool.web.util.AsyncRollingFileAppender">
+		<File>${mes.server.log.loggingRoot}/jetty-all.log</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${mes.server.log.loggingRoot}/jetty-all.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+	
+	
+	
+	<appender name="BACKEND-LOG" class="org.summercool.web.util.AsyncRollingFileAppender">
+		<File>${mes.server.log.loggingRoot}/backend-log.log</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>%msg%n</pattern><!-- %d{HH:mm:ss.SSS} [%thread] %-5level %logger -  -->
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${mes.server.log.loggingRoot}/backend-log.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+	
+    <appender name="GENERAL-LOG" class="com.gexin.log.logback.appender.GeXinLogAppender">
+        <moduleName>${MODULE-NAME}</moduleName>
+    </appender>
+
+    <appender name="DIALUP-LOG" class="com.gexin.log.logback.appender.GeXinLogAppender">
+        <moduleName>${MODULE-NAME}</moduleName>
+        <filter class="com.gexin.log.logback.filter.GeXinDialupFilter">
+            <testKey>${mes.server.log.diaup.key}</testKey>
+        </filter>
+    </appender>	
+	
+	<!-- ===================================================================== -->
+	<!-- sql 日志 -->
+	<!-- ===================================================================== -->
+	<logger name="java.sql" additivity="true">
+		<level value="${mes.server.loggingLevel}" />
+		<appender-ref ref="DAO-DEBUG" />
+		<appender-ref ref="DAO-INFO" />
+		<appender-ref ref="DAO-ERROR" />
+	</logger>
+	<!-- ===================================================================== -->
+	<!-- jetty 日志 -->
+	<!-- ===================================================================== -->
+	<logger name="org.eclipse.jetty" additivity="true">
+		<level value="${mes.server.loggingLevel}" />
+		<appender-ref ref="JETTY-ALL" />
+	</logger>
+	
+    
+    <!-- ===================================================================== -->
+    <!-- 后台发送日志 -->
+    <!-- ===================================================================== -->
+    <logger name="BACKEND-LOG" level="${BI-LEVEL}" additivity="false">
+        <appender-ref ref="BACKEND-LOG"/>
+    </logger>
+
+	<!-- ===================================================================== -->
+	<!-- 拨测日志 -->
+	<!-- ===================================================================== -->
+    <logger name="DIALUP" level="${DIALUP-LEVEL}" additivity="false">
+        <appender-ref ref="DIALUP-LOG"/>
+    </logger>
+
+	<!-- ===================================================================== -->
+	<!-- 普通日志 -->
+	<!-- ===================================================================== -->
+    <logger name="GENERAL" level="${GENERAL-LEVEL}" additivity="true">
+        <appender-ref ref="GENERAL-LOG"/>
+    </logger>	
+	
+	<!-- ===================================================================== -->
+	<!-- Root logger 记录配置 -->
+	<!-- ===================================================================== -->
+	<root level="${mes.server.loggingLevel}">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR-ALL" />
+	</root>
+</configuration>

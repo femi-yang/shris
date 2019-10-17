@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>区域管理</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/bootstrap.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/base.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/jquery.treeview.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/css/basicSet/areaSetting.css">
+</head>
+
+<body>
+	<div class="femi-header">
+		<P class="femi-header-title">地区管理</P>
+		<div class="femi-head-toolbar">
+			<p class="femi-head-alarm" id="select_role_lable"></p>
+		</div>
+	</div>
+	<div class="femi-bd-contain">
+		<div class="femi-left femi-lf">
+			<div class="femi-contain-border femi-border-contain">
+				<div class="femi-tree-head">
+					<div class="btn-group" role="group"
+						style="float: right; margin-top:-5px ">
+						<button type="button" id="femi-tree-update"
+							class="btn btn-default ">
+							<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>更新
+						</button>
+						<button type="button" id="femi-tree-add" class="btn btn-default ">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
+						</button>
+					</div>
+
+
+
+					<strong>地区树</strong>
+
+				</div>
+				<div class="femi-tree-body">
+					<div class="femi-tree-contain">
+						<ul id="areaTree" class="femi-left-tree treeview-famfamfam">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="femi-full-bd">
+			<div class="femi-bd-half-left " style="margin-right: -2px; ">
+				<div class="femi-tb-head">
+					<!-- <p class="femi-tb-title"></p>
+						 -->
+					<div class=" femi-lf zsq-nav-label">
+						<a class="zsq_label " data-id="">aaa</a> 
+						<span class="glyphicon glyphicon-triangle-right"></span> 
+						<a class="zsq_label " data-id="">sss</a>
+					</div>
+					<p class="femi-tb-title">
+						<strong class="tb-title-lable">地区表</strong>
+					</p>
+
+				</div>
+
+				<div class="femi-contain-border femi-tb-border">
+					<div class="femi-table-toolbar  btn-group "></div>
+
+
+					<table class="table   table-hover table-area">
+
+					</table>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+	<ul class="qq dropdown-menu" style="position: absolute;z-index: 500">
+		<li><a class="data-add">新增</a></li>
+		<li><a class="data-delete">删除</a></li>
+		<li><a class="data-active">激活</a></li>
+		<li><a class="data-disable">禁用</a></li>
+		<li><a class="data-editName">更名</a></li>
+
+	</ul>
+</body>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript"
+	src="../static/js/basicSet/areaSetting.js"></script>
+</html>

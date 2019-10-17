@@ -1,0 +1,265 @@
+﻿require(['../static/utils/js/jquery-3.1.1', '../static/utils/js/base/base'],
+    function ($lin, $com) {
+
+        var HTML,
+            Start,
+            orderERPList_source,
+            Data_source,
+
+            DEFAULT_VALUE_Time,
+            KETWROD_LIST_Time,
+            KETWROD_Template_Time,
+            Formattrt_Time,
+            TypeSource_Time,
+
+            PartList;
+
+        HTML = {
+            OrderERPList: [
+                '<tr>',
+                '<td style="min-width: 3px"><input type="checkbox"class="femi-tb-checkbox" style="margin: 1px 0px 1px"value="{{functionID}}" /></th>',
+                '<td style="min-width: 50px" data-title="ID" data-value="{{ID}}" >{{ID}}</td>',
+                '<td style="min-width: 80px" data-title="ERPOrderID" data-value="{{ERPOrderID}}" >{{ERPOrderID}}</td>',
+                '<td style="min-width: 80px" data-title="ProductNo" data-value="{{ProductNo}}" >{{ProductNo}}</td>',
+                '<td style="min-width: 50px" data-title="WorkShopID" data-value="{{WorkShopID}}" >{{WorkShopID}}</td>',
+                '<td style="min-width: 50px" data-title="ERPLineID" data-value="{{ERPLineID}}" >{{ERPLineID}}</td>',
+                '<tr>'
+            ].join(""),
+        }
+
+        PartList = {
+            TaskDefault: 0,
+            TaskOutCPM: 10,
+            TaskOutC: 11,
+            TaskOutCWD: 12,
+            TaskOutXPM: 13,
+            TaskOutX: 14,
+            TaskOutJWD: 15,
+            TaskOutJPM: 16,
+            TaskOutJ: 17,
+            TaskInnerCPM: 20,
+            TaskInnerC: 21,
+            TaskInnerCWD: 22,
+            TaskInnerXPM: 23,
+            TaskInnerX: 24,
+            TaskInnerJWD: 25,
+            TaskInnerJPM: 26,
+            TaskInnerJ: 27,
+            TaskZP: 30,
+            TaskBCJ: 50
+        }
+
+        //时间
+        DEFAULT_VALUE_Time = {
+            startTime: new Date(new Date().getTime() - 86400000 * 500)
+        };
+        (function () {
+
+            KETWROD_LIST_Time = [
+                "startTime|开始时间|DateTime"
+            ];
+
+            KETWROD_Template_Time = {};
+
+            Formattrt_Time = {};
+
+            TypeSource_Time = {
+
+            };
+
+            $.each(KETWROD_LIST_Time, function (i, item) {
+                var detail = item.split("|");
+                KETWROD_Template_Time[detail[0]] = {
+                    index: i,
+                    name: detail[1],
+                    type: detail.length > 2 ? detail[2] : undefined,
+                    control: detail.length > 3 ? detail[3] : undefined
+                };
+
+                if (detail.length > 2) {
+                    Formattrt_Time[detail[0]] = $com.util.getFormatter(TypeSource_Time, detail[0], detail[2]);
+                }
+            });
+        })();
+
+        model = $com.Model.create({
+            name: 'ERP订单',
+
+            type: $com.Model.MAIN,
+
+            configure: function () {
+                this.run();
+            },
+
+            events: function () {
+                //查询订单
+                $("body").delegate("#lmvt-table-check", "click", function () {
+
+                    $("body").append($com.modal.show(DEFAULT_VALUE_Time, KETWROD_Template_Time, "查询", function (rst) {
+                        //调用修改函数
+                        if (!rst || $.isEmptyObject(rst))
+                            return;
+
+                        Start = $com.util.format('yyyy-MM-dd hh:mm:ss', rst.startTime);
+
+                        model.com.refresh();
+
+                    }, TypeSource_Time));
+                });
+                //导出
+                $("body").delegate("#lmvt-table-out", "click", function () {
+
+                    var $table = $(".capacity-table"),
+                        fileName = "产能.xls",
+                        Title = "产能";
+                    var params = $com.table.getExportParams($table, fileName, Title);
+
+                    model.com.postExportExcel(params, function (res) {
+                        var src = res.info.path;
+                        window.open(src);
+                    });
+                });
+
+                $("body").delegate("#lmvt-table-in", "click", function () {
+                    $("#input-file").val("");
+                    $("#input-file").click();
+
+                });
+                //导入
+                $("body").delegate("#input-file", "change", function () {
+                    var $this = $(this);
+
+                    if (this.files.length == 0)
+                        return;
+                    var fileData = this.files[0];
+
+                    var form = new FormData();
+                    form.append("file", fileData);
+
+                    model.com.postImportExcel(form, function (res) {
+                        if (!res)
+                            return;
+                        var list = res.list,
+                            rst = [];
+                        if (list) {
+
+                            var postData = res.list;
+
+                            var DataParams = $com.table.postExportParams(postData, $(".capacity-table"));
+
+                            model.com.postAPSProductAll({
+                                data: DataParams,
+                            }, function (res) {
+                                alert("导入成功！！");
+                                model.com.refresh();
+                            });
+                        }
+                    });
+
+                });
+
+            },
+            run: function () {
+
+            },
+            com: {
+                getERPOrderAll: function (data, fn, context) {
+                    var d = {
+                        $URI: "/ERPInterface/ERPOrderAll",
+                        $TYPE: "get"
+                    };
+                    function err() {
+                        $com.app.tip('获取失败，请检查网络');
+                    }
+                    $com.app.ajax($.extend(d, data), fn, err, context);
+                },
+                getAPSProductAll: function (data, fn, context) {
+                    var d = {
+                        $URI: "/APSProduct/All",
+                        $TYPE: "get"
+                    };
+                    function err() {
+                        $com.app.tip('获取失败，请检查网络');
+                    }
+                    $com.app.ajax($.extend(d, data), fn, err, context);
+                },
+
+                refresh: function () {
+                    model.com.getERPOrderAll({ StartTime: Start }, function (res) {
+                        if (!res)
+                            return;
+                        var list = res.list,
+                            rst = [];
+                        if (list) {
+                            orderERPList_source = res.list;
+
+                            Data_source = res.list;
+
+                            orderERPList_source = $com.util.Clone(orderERPList_source);
+                            var arry = {},
+                                order = [];
+                            $.each(orderERPList_source, function (i, itme) {
+                                if (!arry[itme.ERPOrderID]) {
+                                    arry[itme.ERPOrderID] = {};
+                                }
+                                if (!arry[itme.ERPOrderID][i]) {
+                                    arry[itme.ERPOrderID][i] = {};
+                                }
+
+                                for (var k in PartList) {
+                                    if (itme.PartID == PartList[k] == 50) {
+                                        itme.WorkShopID = 3;
+                                        itme.ERPLineID = 1;
+                                    }
+                                    if (itme.PartID == PartList[k] == 30) {
+                                        itme.WorkShopID = 2;
+                                        itme.ERPLineID = 1;
+                                    }
+                                    else
+                                        itme.WorkShopID = 1;
+                                }
+                                itme.ID = i + 1;
+                                arry[itme.ERPOrderID][i].ERPOrderID = itme.ERPOrderID;
+                                arry[itme.ERPOrderID][i].ID = itme.ID;
+                                arry[itme.ERPOrderID][i].WorkShopID = itme.WorkShopID;
+                                arry[itme.ERPOrderID][i].ERPLineID = itme.ERPLineID;
+                            });
+                            console.log(arry);
+                            console.log(Data_source);
+                            $.each(arry, function (i,item_i) {
+                                order.push("ERPOrderID");
+                                order.push("WorkShopID");
+                                order.push("ERPLineID");
+                            });
+                            
+
+                            console.log(order);
+                            $(".lmvt-orderERP-body").html($com.util.template(arry, HTML.OrderERPList));
+                        }
+
+                    });
+
+                },
+
+                GetWorkShopID: function (PartID) {
+                    var WorkShopID,
+                        LineID;
+                    switch (PartID) {
+                        case TaskBCJ:
+                            WorkShopID = 3;
+                            LineID = 1;
+                            break;
+                        case TaskZP:
+                            WorkShopID = 2;
+                            LineID = 1;
+                            break;
+                        default:
+                            WorkShopID = 1;
+                            break;
+                    }
+                    return WorkShopID, LineID;
+                }
+            },
+        });
+        model.init();
+    });

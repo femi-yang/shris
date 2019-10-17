@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>部门管理</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css"> 
+<link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">  
+<link type="text/css" rel="stylesheet" href="../static/css/basicSet/departmentManage.css">
+	  <link rel="stylesheet" href="../static/utils/css/jquery.orgchart.css">
+	   <link rel="stylesheet" href="../static/utils/css/font-awesome.min.css">
+ 
+</head>
+<body>
+ 	<div class="femi-header">
+		<p class="femi-header-title">部门管理</p>  
+		<div class="femi-head-toolbar" >
+		   <ul class="nav navbar-nav navbar-right" >
+		   		<li> <a href="javascript:;" style="padding: 7.5px 15px" ><span id="femi-save">保存</span></a> </li> 
+		   		<li class="dropdown">
+		          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  style="padding: 7.5px 15px" ><span id="femi-set">部门</span><span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="javascript:;" id="femi-department-show" >部门</a></li>
+		            <li><a href="javascript:;" id="femi-position-show">岗位</a></li>  
+		          </ul>
+		        </li> 
+	   		 	<li class="dropdown">
+		          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  style="padding: 7.5px 15px">结构图 <span class="caret"></span></a>
+		          <ul class="dropdown-menu"> 
+    				<li><a href="javascript:;" id="femi-canvas-show">显示</a></li> 
+		            <li><a href="javascript:;" id="femi-canvas-hide">隐藏</a></li> 
+		          </ul>
+		        </li> 
+	       </ul>
+		</div>
+	</div> 
+	<div class="femi-body-canvas" >
+		<p class="femi-table-title">部门结构图</p>
+		<div class="femi-canvas-in">
+		</div>
+	</div>
+ 
+	<div class="femi-body-table">
+		<div class="femi-table-department">
+			 
+			<div class="panel-body femi-table">
+		        <div class="femi-table-toolbar btn-group">   		
+		            
+		        </div>
+		        <table class="tb_department"></table> 
+		    </div>
+		</div>
+		<div class="femi-table-position">
+			 
+			<div class="panel-body femi-table" >
+		        <div class="femi-table-toolbar btn-group">   		
+		            
+		        </div>
+		        <table class="tb_position"></table> 
+		    </div>
+		</div>
+		
+	</div>
+	  
+	<script type="text/javascript" src="../static/utils/require.js"></script>  
+	<script type="text/javascript" src="../static/js/basicSet/departmentManage.js"></script>   
+	
+</body>
+</html>

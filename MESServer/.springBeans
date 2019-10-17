@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.4.me201805280638]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/main/resources/spring/action_web-config.xml</config>
+		<config>src/main/resources/summercool/spring/applicationContext.xml</config>
+		<config>src/main/resources/spring/service-config.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>src/main/resources/summercool/spring/applicationContext-module.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

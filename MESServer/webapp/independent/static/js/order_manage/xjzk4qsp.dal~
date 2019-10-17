@@ -1,0 +1,797 @@
+﻿require(['../static/utils/js/jquery-3.1.1', '../static/utils/js/base/base'],
+    function ($lin, $com) {
+
+        var HTML,
+            Start,
+            orderERPList_source,
+            Data_source,
+            order,
+            ALLPart,
+            AllERPData,
+
+            orderERPMESList_source,
+            ERPMESData_source,
+            ERPMESOrder,
+            arr,
+
+            orderMESList_source,
+            MESData_source,
+            MESOrder,
+            msTime,
+            meTime,
+
+
+            orderNumber,
+            productNumber,
+            materialNumber,
+            wID,
+            lID,
+            sID,
+            sTime,
+            eTime,
+
+            DEFAULT_VALUE_Time,
+            KETWROD_LIST_Time,
+            KETWROD_Template_Time,
+            Formattrt_Time,
+            TypeSource_Time,
+
+            DEFAULT_VALUE_ERPMESTime,
+            KETWROD_LIST_ERPMESTime,
+            KETWROD_Template_ERPMESTime,
+            Formattrt_ERPMESTime,
+            TypeSource_ERPMESTime,
+
+            DEFAULT_VALUE_MESTime,
+            KETWROD_LIST_MESTime,
+            KETWROD_Template_MESTime,
+            Formattrt_MESTime,
+            TypeSource_MESTime,
+
+            PartList;
+
+        HTML = {
+            OrderERPList: [
+                '<tr>',
+                '<td style="min-width: 3px"><input type="checkbox"class="femi-tb-checkbox" style="margin: 1px 0px 1px"value="{{functionID}}" /></th>',
+                '<td style="min-width: 50px" data-title="ID" data-value="{{ID}}" >{{ID}}</td>',
+                '<td style="min-width: 80px" data-title="ERPOrderID" data-value="{{ERPOrderID}}" >{{ERPOrderID}}</td>',
+                '<td style="min-width: 50px" data-title="WorkShopID" data-value="{{WorkShopID}}" >{{WorkShopID}}</td>',
+                '<td style="min-width: 50px" data-title="ERPLineID" data-value="{{ERPLineID}}" >{{ERPLineID}}</td>',
+                '<tr>'
+            ].join(""),
+
+            OrderERPMESList: [
+                '<tr>',
+                '<td style="min-width: 3px"><input type="checkbox"class="femi-tb-checkbox" style="margin: 1px 0px 1px"value="{{functionID}}" /></th>',
+                '<td style="min-width: 50px" data-title="ID" data-value="{{ID}}" >{{ID}}</td>',
+                '<td style="min-width: 80px" data-title="OrderNo" data-value="{{OrderNo}}" >{{OrderNo}}</td>',
+                '<td style="min-width: 50px" data-title="WorkShopID" data-value="{{WorkShopID}}" >{{WorkShopID}}</td>',
+                '<td style="min-width: 50px" data-title="LineID" data-value="{{LineID}}" >{{LineID}}</td>',
+                '<td style="min-width: 80px" data-title="Status" data-value="{{Status}}" >{{Status}}</td>',
+                '<tr>'
+            ].join(""),
+
+            OrderERPListAll: [
+                '<tr>',
+                '<td style="min-width: 3px"><input type="checkbox"class="femi-tb-checkbox" style="margin: 1px 0px 1px"value="{{functionID}}" /></th>',
+                '<td style="min-width: 80px" data-title="ERPOrderID" data-value="{{ERPOrderID}}" >{{ERPOrderID}}</td>',
+                '<td style="min-width: 50px" data-title="WorkShopID" data-value="{{WorkShopID}}" >{{WorkShopID}}</td>',
+                '<td style="min-width: 50px" data-title="ERPLineID" data-value="{{ERPLineID}}" >{{ERPLineID}}</td>',
+                '<td style="min-width: 80px" data-title="ProductNo" data-value="{{ProductNo}}" >{{ProductNo}}</td>',
+                '<td style="min-width: 80px" data-title="PartName" data-value="{{PartName}}" >{{PartName}}</td>',
+                '<td style="min-width: 80px" data-title="MaterialNo" data-value="{{MaterialNo}}" >{{MaterialNo}}</td>',
+                '<td style="min-width: 80px" data-title="MaterialName" data-value="{{MaterialName}}" >{{MaterialName}}</td>',
+                '<td style="min-width: 80px" data-title="FQTY" data-value="{{FQTY}}" >{{FQTY}}</td>',
+                '<td style="min-width: 80px" data-title="StartDate" data-value="{{StartDate}}" >{{StartDate}}</td>',
+                '<td style="min-width: 80px" data-title="FinishedDate" data-value="{{FinishedDate}}" >{{FinishedDate}}</td>',
+                '<td style="min-width: 80px" data-title="ERPBOMNo" data-value="{{ERPBOMNo}}" >{{ERPBOMNo}}</td>',
+                '<td style="min-width: 80px" data-title="MaterialNo" data-value="{{MaterialNo}}" >{{MaterialNo}}</td>',
+                '<td style="min-width: 80px" data-title="CreateDate" data-value="{{CreateDate}}" >{{CreateDate}}</td>',
+                '<td style="min-width: 80px" data-title="Active" data-value="{{Active}}" >{{Active}}</td>',
+                '<td style="min-width: 80px" data-title="ERPEntryID" data-value="{{ERPEntryID}}" >{{ERPEntryID}}</td>',
+                '<tr>'
+            ].join(""),
+
+            OrderERPMESListAll: [
+                '<tr>',
+                '<td style="min-width: 3px"><input type="checkbox"class="femi-tb-checkbox" style="margin: 1px 0px 1px"value="{{functionID}}" /></th>',
+                '<td style="min-width: 50px" data-title="showID" data-value="{{showID}}" >{{showID}}</td>',
+                '<td style="min-width: 80px" data-title="OrderNo" data-value="{{OrderNo}}" >{{OrderNo}}</td>',
+                '<td style="min-width: 50px" data-title="WorkShopID" data-value="{{WorkShopID}}" >{{WorkShopID}}</td>',
+                '<td style="min-width: 50px" data-title="LineID" data-value="{{LineID}}" >{{LineID}}</td>',
+                '<td style="min-width: 80px" data-title="ProductNo" data-value="{{ProductNo}}" >{{ProductNo}}</td>',
+                '<td style="min-width: 80px" data-title="PartName" data-value="{{PartName}}" >{{PartName}}</td>',
+                '<td style="min-width: 80px" data-title="MaterialNo" data-value="{{MaterialNo}}" >{{MaterialNo}}</td>',
+                '<td style="min-width: 80px" data-title="MaterialName" data-value="{{MaterialName}}" >{{MaterialName}}</td>',
+                '<td style="min-width: 80px" data-title="FQTY" data-value="{{FQTY}}" >{{FQTY}}</td>',
+                '<td style="min-width: 80px" data-title="StartDate" data-value="{{StartDate}}" >{{StartDate}}</td>',
+                '<td style="min-width: 80px" data-title="FinishedDate" data-value="{{FinishedDate}}" >{{FinishedDate}}</td>',
+                '<td style="min-width: 80px" data-title="BOMNo" data-value="{{BOMNo}}" >{{BOMNo}}</td>',
+                '<td style="min-width: 80px" data-title="Creator" data-value="{{Creator}}" >{{Creator}}</td>',
+                '<td style="min-width: 80px" data-title="CreateDate" data-value="{{CreateDate}}" >{{CreateDate}}</td>',
+                '<td style="min-width: 80px" data-title="Status" data-value="{{Status}}" >{{Status}}</td>',
+                '<tr>'
+            ].join(""),
+        };
+
+        PartList = {
+            TaskDefault: 0,
+            TaskOutCPM: 10,
+            TaskOutC: 11,
+            TaskOutCWD: 12,
+            TaskOutJPM: 16,
+            TaskOutXPM: 13,
+            TaskOutX: 14,
+            TaskOutJWD: 15,
+            TaskOutJ: 17,
+            TaskInnerCPM: 20,
+            TaskInnerC: 21,
+            TaskInnerCWD: 22,
+            TaskInnerXPM: 23,
+            TaskInnerX: 24,
+            TaskInnerJWD: 25,
+            TaskInnerJPM: 26,
+            TaskInnerJ: 27,
+            TaskZP: 30,
+            TaskBCJ: 50
+        };
+        OrderStatus = {
+            Description: [
+                {
+                    name: "未知",
+                    value: 0
+                },
+                {
+                    name: "保存",
+                    value: 1
+                },
+                {
+                    name: "下达",
+                    value: 2
+                },
+                {
+                    name: "开工",
+                    value: 3
+                },
+                {
+                    name: "完工",
+                    value: 4
+                },
+                {
+                    name: "终止",
+                    value: 5
+                },
+                {
+                    name: "暂停",
+                    value: 6
+                },
+            ],
+            Active:[
+                {
+                    name: "激活",
+                    value: 2
+                },
+                {
+                    name: "关闭",
+                    value: 1
+                },
+            ],
+        };
+
+        //时间
+        DEFAULT_VALUE_Time = {
+            startTime: new Date(new Date().getTime() - 86400000 * 500)
+        };
+        (function () {
+
+            KETWROD_LIST_Time = [
+                "startTime|开始时间|DateTime"
+            ];
+
+            KETWROD_Template_Time = {};
+
+            Formattrt_Time = {};
+
+            TypeSource_Time = {
+
+            };
+
+            $.each(KETWROD_LIST_Time, function (i, item) {
+                var detail = item.split("|");
+                KETWROD_Template_Time[detail[0]] = {
+                    index: i,
+                    name: detail[1],
+                    type: detail.length > 2 ? detail[2] : undefined,
+                    control: detail.length > 3 ? detail[3] : undefined
+                };
+
+                if (detail.length > 2) {
+                    Formattrt_Time[detail[0]] = $com.util.getFormatter(TypeSource_Time, detail[0], detail[2]);
+                }
+            });
+        })();
+        //ERPMES时间
+        DEFAULT_VALUE_ERPMESTime = {
+            sTime: new Date(new Date().getTime() - 86400000 * 500),
+            eTime: new Date()
+        };
+        (function () {
+
+            KETWROD_LIST_ERPMESTime = [
+                "sTime|开始时间|DateTime",
+                "eTime|结束时间|DateTime"
+            ];
+
+            KETWROD_Template_ERPMESTime = {};
+
+            Formattrt_ERPMESTime = {};
+
+            TypeSource_ERPMESTime = {
+
+            };
+
+            $.each(KETWROD_LIST_ERPMESTime, function (i, item) {
+                var detail = item.split("|");
+                KETWROD_Template_ERPMESTime[detail[0]] = {
+                    index: i,
+                    name: detail[1],
+                    type: detail.length > 2 ? detail[2] : undefined,
+                    control: detail.length > 3 ? detail[3] : undefined
+                };
+
+                if (detail.length > 2) {
+                    Formattrt_ERPMESTime[detail[0]] = $com.util.getFormatter(TypeSource_ERPMESTime, detail[0], detail[2]);
+                }
+            });
+        })();
+        //MES时间
+        DEFAULT_VALUE_MESTime = {
+            msTime: new Date(new Date().getTime() - 86400000 * 500),
+            meTime: new Date()
+        };
+        (function () {
+
+            KETWROD_LIST_MESTime = [
+                "msTime|开始时间|DateTime",
+                "meTime|结束时间|DateTime"
+            ];
+
+            KETWROD_Template_MESTime = {};
+
+            Formattrt_MESTime = {};
+
+            TypeSource_MESTime = {
+
+            };
+
+            $.each(KETWROD_LIST_MESTime, function (i, item) {
+                var detail = item.split("|");
+                KETWROD_Template_MESTime[detail[0]] = {
+                    index: i,
+                    name: detail[1],
+                    type: detail.length > 2 ? detail[2] : undefined,
+                    control: detail.length > 3 ? detail[3] : undefined
+                };
+
+                if (detail.length > 2) {
+                    Formattrt_MESTime[detail[0]] = $com.util.getFormatter(TypeSource_MESTime, detail[0], detail[2]);
+                }
+            });
+        })();
+
+        model = $com.Model.create({
+            name: 'ERP订单',
+
+            type: $com.Model.MAIN,
+
+            configure: function () {
+                this.run();
+            },
+
+            events: function () {
+                //查询待选生产订单
+                $("body").delegate("#lmvt-tableorderERPMES-check", "click", function () {
+
+                    $("body").append($com.modal.show(DEFAULT_VALUE_ERPMESTime, KETWROD_Template_ERPMESTime, "查询时间内所有订单", function (rst) {
+                        //调用修改函数
+                        if (!rst || $.isEmptyObject(rst))
+                            return;
+
+                        sTime = $com.util.format('yyyy-MM-dd hh:mm:ss', rst.sTime);
+                        eTime = $com.util.format('yyyy-MM-dd hh:mm:ss', rst.eTime);
+
+                        model.com.refresh();
+
+                    }, TypeSource_ERPMESTime));
+                });
+                //删除候选订单
+                $("body").delegate("#lmvt-tableorderERPMES-delete", "click", function () {
+
+                    var SelectData1 = $com.table.getSelectionData($(".lmvt-orderERPMES-body"), "ID", ERPMESOrder);
+                    var SelectData2 = $com.table.getSelectionData($(".lmvt-orderERPMESALL-body"), "showID", arr);
+
+                    
+
+                    if (SelectData1.length > 0) {
+                        if (!SelectData1 || !SelectData1.length) {
+                            alert("请先选择一行数据再试！")
+                            return;
+                        }
+                        if (!confirm("已选择" + SelectData1.length + "条订单，确定删除整个订单？")) {
+                            return;
+                        }
+
+                        var dataSource = [];
+                        $.each(SelectData1, function (i, item_i) {
+                            $.each(ERPMESData_source, function (j, item_j) {
+                                if (item_i.OrderNo == item_j.OrderNo)
+                                    dataSource.push(item_j);
+                            });
+                        });
+
+
+                    }
+                    if (SelectData2.length > 0) {
+                        if (!SelectData2 || !SelectData2.length) {
+                            alert("请先选择一行数据再试！")
+                            return;
+                        }
+                        if (!confirm("已选择" + SelectData1.length + "条订单，确定删除数据？")) {
+                            return;
+                        }
+                        var dataSource = [],
+                            nArry = [];
+                        $.each(SelectData2, function (i, item_i) {
+                            $.each(arr, function (j, item_j) {
+                                if (item_i.showID == item_j.showID)
+                                    nArry.push(item_i.ID);
+                            });
+                        });
+
+                        $.each(ERPMESData_source, function (i, item_i) {
+                            $.each(nArry, function (j, item_j) {
+                                if (item_i.ID == item_j)
+                                    dataSource.push(item_i);
+                            });
+                        });
+
+                    }
+                    $.each(dataSource, function (i, item_i) {
+                        $.each(AllERPData, function (j, itme_j) {
+                            if (item_i.OrderNo == itme_j.OrderNo) {
+                                alert(item_i.OrderNo + "已存在于生产订单列表中")
+                                return ;
+                            }
+                        });
+                    });
+
+                    $.each(dataSource, function (i, item) {
+                        model.com.postMESERPOrderDelete({
+                            data: item
+                        }, function (res) {
+                            alert("删除成功！！");
+                            model.com.refresh();
+                        });
+                    });
+                    
+                });
+                //查询订单
+                $("body").delegate("#lmvt-table-check", "click", function () {
+
+                    $("body").append($com.modal.show(DEFAULT_VALUE_Time, KETWROD_Template_Time, "查询", function (rst) {
+                        //调用修改函数
+                        if (!rst || $.isEmptyObject(rst))
+                            return;
+
+                        Start = $com.util.format('yyyy-MM-dd hh:mm:ss', rst.startTime);
+
+                        model.com.refresh();
+
+                    }, TypeSource_Time));
+                });
+                //查询MES订单
+                $("body").delegate("#lmvt-tableorderMES-check", "click", function () {
+
+                    $("body").append($com.modal.show(DEFAULT_VALUE_MESTime, KETWROD_Template_MESTime, "查询", function (rst) {
+                        //调用修改函数
+                        if (!rst || $.isEmptyObject(rst))
+                            return;
+
+                        msTime = $com.util.format('yyyy-MM-dd hh:mm:ss', rst.msTime);
+                        meTime = $com.util.format('yyyy-MM-dd hh:mm:ss', rst.meTime);
+
+                        model.com.refresh();
+
+                    }, TypeSource_MESTime));
+                });
+                //双击ERP订单事件
+                $("body").delegate(".lmvt-orderERP-body tr", "dblclick", function () {
+                    var $this = $(this),
+                        id = $this.find("td[data-title=ID]").attr("data-value"),
+                        orderID,
+                        arr = [];
+                    $.each(order, function (i, item) {
+                        if (item.ID == id)
+                            orderID = item.ERPOrderID;
+
+                    });
+                    $.each(orderERPList_source, function (j, item_j) {
+                        if (orderID == item_j.ERPOrderID)
+                            arr.push(item_j);
+                    });
+                    $.each(arr, function (i, item) {
+                        item.ID = i + 1;
+                        item.Active = 2;
+                        item.CreateDate = $com.util.format('yyyy-MM-dd hh:mm:ss', new Date());
+
+                    });
+                    model.com.GetPartName(arr);
+                    model.com.GetOrderStatus(arr);
+                    $(".lmvt-container-table-basic").hide();
+                    $(".lmvt-container-table-orderERPALL").show();
+                    $(".lmvt-orderERPALL-body").html($com.util.template(arr, HTML.OrderERPListAll));
+
+                });
+                //双击ERPMES订单事件
+                $("body").delegate(".lmvt-orderERPMES-body tr", "dblclick", function () {
+                    var $this = $(this),
+                        id = $this.find("td[data-title=ID]").attr("data-value"),
+                        orderID;
+                    arr = [];
+                    $.each(ERPMESOrder, function (i, item) {
+                        if (item.ID == id)
+                            orderID = item.OrderNo;
+                    });
+                    $.each(ERPMESData_source, function (j, item_j) {
+                        if (orderID == item_j.OrderNo)
+                            arr.push(item_j);
+                    });
+                    $.each(arr, function (i, item) {
+                        item.CreateDate = $com.util.format('yyyy-MM-dd hh:mm:ss', new Date());
+                        item.showID = i + 1;
+                    });
+                    model.com.GetPartName(arr);
+                    model.com.GetOrderStatus(arr);
+                    $(".lmvt-container-orderERP-table-basic").hide();
+                    $(".lmvt-container-table-orderERP-orderERPALL").show();
+                    $(".lmvt-orderERPMESALL-body").html($com.util.template(arr, HTML.OrderERPMESListAll));
+
+                });
+                //双击MES订单事件
+                $("body").delegate(".lmvt-orderMES-body tr", "dblclick", function () {
+                    var $this = $(this),
+                        id = $this.find("td[data-title=ID]").attr("data-value"),
+                        orderID,
+                        MES_Arr = [];
+                    $.each(MESOrder, function (i, item) {
+                        if (item.ID == id)
+                            orderID = item.OrderNo;
+                    });
+                    $.each(MESData_source, function (j, item_j) {
+                        if (orderID == item_j.OrderNo)
+                            MES_Arr.push(item_j);
+                    });
+                    $.each(MES_Arr, function (i, item) {
+                        item.CreateDate = $com.util.format('yyyy-MM-dd hh:mm:ss', new Date());
+                        item.showID = i + 1;
+                    });
+                    model.com.GetPartName(MES_Arr);
+                    model.com.GetOrderStatus(MES_Arr);
+                    $(".lmvt-container-orderMES-table-basic").hide();
+                    $(".lmvt-container-table-orderMES-orderERPALL").show();
+                    $(".lmvt-orderMESALL-body").html($com.util.template(MES_Arr, HTML.OrderERPMESListAll));
+
+                });
+                //返回ERP订单
+                $("body").delegate("#lmvt-back", "click", function () {
+                    model.com.refresh();
+                    $(".lmvt-container-table-basic").show();
+                    $(".lmvt-container-table-orderERPALL").hide();
+                });
+                //返回ERPMES订单
+                $("body").delegate("#lmvt-ERPMEStable-back", "click", function () {
+                    model.com.refresh();
+                    $(".lmvt-container-orderERP-table-basic").show();
+                    $(".lmvt-container-table-orderERP-orderERPALL").hide();
+                });
+                //返回MES订单
+                $("body").delegate("#lmvt-MEStable-back", "click", function () {
+                    model.com.refresh();
+                    $(".lmvt-container-orderMES-table-basic").show();
+                    $(".lmvt-container-table-orderMES-orderERPALL").hide();
+                });
+                //导出ERP
+                $("body").delegate("#lmvt-table-out", "click", function () {
+
+                    $(".lmvt-ERP-body").html($com.util.template(Data_source, HTML.OrderERPMESList));
+
+                    var $table = $(".orderERPALL-table"),
+                        fileName = "ERP订单.xls",
+                        Title = "ERP订单";
+                    var params = $com.table.getExportParams($table, fileName, Title);
+
+                    model.com.postExportExcel(params, function (res) {
+                        var src = res.info.path;
+                        window.open(src);
+                    });
+                });
+                //待选生产订单 
+                $("body").delegate("#lmvt-orderERPMES", "click", function () {
+                    $(".changeName").text("候选生产订单");
+                    $(".lmvt-container-orderERP").show();
+                    $(".lmvt-container-orderMES").hide();
+                    $(".lmvt-container").hide();
+                });
+                //ERP订单
+                $("body").delegate("#lmvt-orderERP", "click", function () {
+                    $(".changeName").text("ERP订单");
+                    $(".lmvt-container-orderERP").hide();
+                    $(".lmvt-container-orderMES").hide();
+                    $(".lmvt-container").show();
+                });
+                //生产订单
+                $("body").delegate("#lmvt-orderMES", "click", function () {
+                    $(".changeName").text("生产队列订单");
+                    $(".lmvt-container-orderERP").hide();
+                    $(".lmvt-container-orderMES").show();
+                    $(".lmvt-container").hide();
+                });
+            },
+            run: function () {
+                model.com.getAPSPartAll({}, function (res) {
+                    if (!res)
+                        return;
+                    var list = res.list,
+                        rst = [];
+                    if (list) {
+                        ALLPart = res.list;
+                    }
+                });
+                model.com.getMESOrderAll({ orderNo: "", productNo: "", materialNo: "", workShopID: 0, lineID: 0, partID: 0, status: 0, type: 0, active: 2, startTime: "2000-10-08 11:32:00", endTime: $com.util.format('yyyy-MM-dd hh:mm:ss', new Date()) }, function (res) {
+                    if (!res)
+                        return;
+                    var list = res.list,
+                        rst = [];
+                    if (list) {
+                        AllERPData = res.list;
+                    }
+                    
+                });
+            },
+            com: {
+                //导出
+                postExportExcel: function (data, fn, context) {
+                    var d = {
+                        $URI: "/Upload/ExportExcel",
+                        $TYPE: "post"
+                    };
+
+                    function err() {
+                        $com.app.tip('提交失败，请检查网络');
+                    }
+
+                    $com.app.ajax($.extend(d, data), fn, err, context);
+                },
+                //ERP订单
+                getERPOrderAll: function (data, fn, context) {
+                    var d = {
+                        $URI: "/ERPInterface/ERPOrderAll",
+                        $TYPE: "get"
+                    };
+                    function err() {
+                        $com.app.tip('获取失败，请检查网络');
+                    }
+                    $com.app.ajax($.extend(d, data), fn, err, context);
+                },
+                //ERPMES订单
+                getERPMESOrderAll: function (data, fn, context) {
+                    var d = {
+                        $URI: "/MESOrder/MESERPOrderAll",
+                        $TYPE: "get"
+                    };
+                    function err() {
+                        $com.app.tip('获取失败，请检查网络');
+                    }
+                    $com.app.ajax($.extend(d, data), fn, err, context);
+                },
+                postMESERPOrderDelete: function (data, fn, context) {
+                    var d = {
+                        $URI: "/MESOrder/MESERPOrderDelete",
+                        $TYPE: "post"
+                    };
+                    function err() {
+                        $com.app.tip('提交失败，请检查网络');
+                    }
+                    $com.app.ajax($.extend(d, data), fn, err, context);
+                },
+                //MES订单
+                getMESOrderAll: function (data, fn, context) {
+                    var d = {
+                        $URI: "/MESOrder/MESOrderAll",
+                        $TYPE: "get"
+                    };
+                    function err() {
+                        $com.app.tip('获取失败，请检查网络');
+                    }
+                    $com.app.ajax($.extend(d, data), fn, err, context);
+                },
+                //工序段
+                getAPSPartAll: function (data, fn, context) {
+                    var d = {
+                        $URI: "/APSPart/All",
+                        $TYPE: "get"
+                    };
+                    function err() {
+                        $com.app.tip('获取失败，请检查网络');
+                    }
+                    $com.app.ajax($.extend(d, data), fn, err, context);
+                },
+                refresh: function () {
+                    //ERP
+                    model.com.getERPOrderAll({ StartTime: Start }, function (res) {
+                        if (!res)
+                            return;
+                        var list = res.list,
+                            rst = [];
+                        if (list) {
+                            orderERPList_source = res.list;
+
+                            Data_source = res.list;
+
+                            orderERPList_source = $com.util.Clone(orderERPList_source);
+                            var arry = {};
+                            order = [];
+                            $.each(orderERPList_source, function (i, itme) {
+                                if (!arry[itme.ERPOrderID]) {
+                                    arry[itme.ERPOrderID] = {};
+                                }
+
+
+                                for (var k in PartList) {
+                                    if (itme.PartID == PartList[k] == 50) {
+                                        itme.WorkShopID = 3;
+                                        itme.ERPLineID = 1;
+                                    }
+                                    if (itme.PartID == PartList[k] == 30) {
+                                        itme.WorkShopID = 2;
+                                        itme.ERPLineID = 1;
+                                    }
+                                    else
+                                        itme.WorkShopID = 1;
+                                }
+                                itme.ID = i + 1;
+                                for (var p in arry) {
+                                    arry[itme.ERPOrderID].ERPOrderID = p;
+                                    arry[itme.ERPOrderID].ID;
+                                    arry[itme.ERPOrderID].WorkShopID = itme.WorkShopID;
+                                    arry[itme.ERPOrderID].ERPLineID = itme.ERPLineID;
+                                }
+                            });
+
+                            $.each(arry, function (i, item) {
+                                order.push(item);
+                            });
+                            $.each(order, function (i, item) {
+                                item.ID = i + 1;
+                            });
+
+                            $(".lmvt-orderERP-body").html($com.util.template(order, HTML.OrderERPList));
+                        }
+
+                    });
+
+                    //model.com.getERPMESOrderAll({ orderNo: orderNumber, productNo: productNumber, materialNo: materialNumber, workShopID: wID, lineID: lID, partID: 0, status: sID, type: 0, active: 2, startTime: sTime, endTime: eTime }, function (res) {
+                    //    if (!res)
+                    //        return;
+                    //    var list = res.list,
+                    //        rst = [];
+                    //    if (list) {
+                    //        orderERPList_source = res.list;
+
+                    //        Data_source = res.list;
+
+                    //        orderERPList_source = $com.util.Clone(orderERPList_source);
+
+                    //    }
+
+                    //});
+                    //ERPMES
+                    model.com.getERPMESOrderAll({ orderNo: "", productNo: "", materialNo: "", workShopID: 0, lineID: 0, partID: 0, status: 0, type: 0, active: 2, startTime: sTime, endTime: eTime }, function (res) {
+                        var arry = {};
+                        ERPMESOrder = [];
+                        if (!res)
+                            return;
+                        var list = res.list,
+                            rst = [];
+                        if (list) {
+                            orderERPMESList_source = res.list;
+
+                            ERPMESData_source = res.list;
+
+                            orderERPMESList_source = $com.util.Clone(orderERPMESList_source);
+
+                            $.each(orderERPMESList_source, function (i, item) {
+                                if (!arry[item.OrderNo])
+                                    arry[item.OrderNo] = {};
+                                for (var p in arry) {
+                                    arry[item.OrderNo].OrderNo = p;
+                                    arry[item.OrderNo].WorkShopID = item.WorkShopID;
+                                    arry[item.OrderNo].LineID = item.LineID;
+                                    arry[item.OrderNo].Status = item.Status;
+                                }
+                            });
+                            $.each(arry, function (i, item) {
+                                ERPMESOrder.push(item);
+                            });
+                            $.each(ERPMESOrder, function (i, item) {
+                                item.ID = i + 1;
+                            });
+                            model.com.GetOrderStatus(ERPMESOrder);
+                        }
+                        $(".lmvt-orderERPMES-body").html($com.util.template(ERPMESOrder, HTML.OrderERPMESList));
+                    });
+                    //MES
+                    model.com.getMESOrderAll({ orderNo: "", productNo: "", materialNo: "", workShopID: 0, lineID: 0, partID: 0, status: 0, type: 0, active: 2, startTime: msTime, endTime: meTime }, function (res) {
+                        var M_arry = {};
+                        MESOrder = [];
+                        if (!res)
+                            return;
+                        var list = res.list,
+                            rst = [];
+                        if (list) {
+                            orderMESList_source = res.list;
+
+                            MESData_source = res.list;
+
+                            orderMESList_source = $com.util.Clone(orderMESList_source);
+
+                            $.each(orderMESList_source, function (i, item) {
+                                if (!M_arry[item.OrderNo])
+                                    M_arry[item.OrderNo] = {};
+
+                                for (var p in M_arry) {
+                                    M_arry[p].OrderNo = p;
+                                    M_arry[p].WorkShopID = item.WorkShopID;
+                                    M_arry[p].LineID = item.LineID;
+                                    M_arry[p].Status = item.Status;
+                                }
+                            }); 
+                           
+                            $.each(M_arry, function (i, item) {
+                                MESOrder.push(item);
+                            });
+                            $.each(MESOrder, function (i, item) {
+                                item.ID = i + 1;
+                            });
+                            model.com.GetOrderStatus(MESOrder);
+                        }
+                        $(".lmvt-orderMES-body").html($com.util.template(MESOrder, HTML.OrderERPMESList));
+                    });
+                },
+                //工序段名称
+                GetPartName: function (source) {
+                    $.each(source, function (i, item_i) {
+                        $.each(ALLPart, function (j, item_j) {
+                            if (item_i.PartID == item_j.PartID)
+                                item_i.PartName = item_j.PartName;
+                        });
+                    });
+                },
+                //订单状态
+                GetOrderStatus: function (source) {
+                    $.each(source, function (i, item_i) {
+                        $.each(OrderStatus.Description, function (j, item_j) {
+                            if (item_i.Active == item_j.value)
+                                item_i.Active = item_j.name;
+                        });
+                        $.each(OrderStatus.Active, function (k, item_k) {
+                            if (item_i.Status == item_k.value)
+                                item_i.Status = item_k.name;
+                        });
+                    });
+                },
+            },
+        });
+        model.init();
+    });

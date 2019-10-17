@@ -1,0 +1,10 @@
+15:38:55.295 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+15:38:55.327 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+15:38:57.448 [qtp418304857-37 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+15:38:57.456 [qtp418304857-37 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+15:39:01.881 [qtp418304857-32 - /api/User/InfoSecret?ModuleID=5] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+15:39:01.887 [qtp418304857-32 - /api/User/InfoSecret?ModuleID=5] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+15:39:23.460 [qtp418304857-37 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+15:39:23.472 [qtp418304857-37 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+15:40:18.431 [qtp418304857-32 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+15:40:18.452 [qtp418304857-32 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null

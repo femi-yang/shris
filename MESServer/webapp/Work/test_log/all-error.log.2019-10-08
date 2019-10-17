@@ -1,0 +1,86 @@
+10:26:53.148 [qtp418304857-30 - /api/HomePage/ModuleUpdate] ERROR com.mes.server.action.dao.bfc.BFCHomePageModuleManager - org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO iplant_mes.mbs_menu_item(Name,GroupID,Icon,Url,Type,Active,CreateTime,EditTime,CreatorID,EditorID,Default,SecretKey)VALUES(?,?,?,?,?,?,now(),now(),?,?,0,?);]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default,SecretKey)VALUES('库存        ',10,'http://169.254.68.198:8080/upload/' at line 1
+10:38:13.651 [qtp418304857-29 - /api/HomePage/ModuleUpdate] ERROR com.mes.server.action.dao.bfc.BFCHomePageModuleManager - org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO iplant_mes.mbs_menu_item(Name,GroupID,Icon,Url,Type,Active,CreateTime,EditTime,CreatorID,EditorID,Default,SecretKey) VALUES(?,?,?,?,?,?,now(),now(),?,?,0,?);]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default,SecretKey) VALUES('库存',10,'http://169.254.68.198:8080/upload/ModuleM' at line 1
+10:57:44.038 [qtp418304857-33 - /api/HomePage/ModuleUpdate] ERROR com.mes.server.action.dao.bfc.BFCHomePageModuleManager - org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO iplant_mes.mbs_menu_item(Name,GroupID,Icon,Url,Type,Active,CreateTime,EditTime,CreatorID,EditorID,Default,SecretKey) VALUES(?,?,?,?,?,?,now(),now(),?,?,0,?);]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default,SecretKey) VALUES('库存',10,'http://169.254.68.198:8080/upload/ModuleM' at line 1
+11:04:21.529 [qtp418304857-28 - /api/HomePage/ModuleUpdate] ERROR com.mes.server.action.dao.bfc.BFCHomePageModuleManager - org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO iplant_mes.mbs_menu_item(Name,GroupID,Icon,Url,Type,Active,CreateTime,EditTime,CreatorID,EditorID,Default,SecretKey)VALUES(?,?,?,?,?,?,now(),now(),?,?,0,?);]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default,SecretKey)VALUES('asdasd',6,'http://169.254.68.198:8080/upload/ModuleMen' at line 1
+11:07:49.548 [qtp418304857-31 - /api/HomePage/ModuleUpdate] ERROR com.mes.server.action.dao.bfc.BFCHomePageModuleManager - org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO iplant_mes.mbs_menu_item(Name,GroupID,Icon,Url,Type,Active,CreateTime,EditTime,CreatorID,EditorID,Default,SecretKey)VALUES(?,?,?,?,?,?,now(),now(),?,?,0,?);]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default,SecretKey)VALUES('撒打算',6,'http://169.254.68.198:8080/upload/Module' at line 1
+11:19:08.392 [qtp418304857-30 - /api/HomePage/ModuleUpdate] ERROR com.mes.server.action.dao.bfc.BFCHomePageModuleManager - org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO iplant_mes.mbs_menu_item(Name,GroupID,Icon,Url,Type,Active,CreateTime,EditTime,CreatorID,EditorID,Default,SecretKey)  VALUES (?,?,?,?,?,?,now(),now(),?,?,0,?);]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default,SecretKey)  VALUES ('粗困',9,'http://169.254.68.198:8080/upload/Module' at line 1
+11:20:34.123 [qtp418304857-31 - /api/HomePage/ModuleUpdate] ERROR com.mes.server.action.dao.bfc.BFCHomePageModuleManager - org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO iplant_mes.mbs_menu_item(Name,GroupID,Icon,Url,Type,Active,CreateTime,EditTime,CreatorID,EditorID, Default ,SecretKey)  VALUES (?,?,?,?,?,?,now(),now(),?,?,0,?);]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default ,SecretKey)  VALUES ('123',6,'http://169.254.68.198:8080/upload/ModuleMe' at line 1
+11:21:22.708 [qtp418304857-30 - /api/HomePage/ModuleUpdate] ERROR com.mes.server.action.dao.bfc.BFCHomePageModuleManager - org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO iplant_mes.mbs_menu_item(Name,GroupID,Icon,Url,Type,Active,CreateTime,EditTime,CreatorID,EditorID, Default ,SecretKey)  VALUES (?,?,?,?,?,?,now(),now(),?,?,0,?);]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Default ,SecretKey)  VALUES ('粗困',10,'http://169.254.68.198:8080/upload/Modu' at line 1
+12:21:50.924 [qtp418304857-44 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+12:21:50.938 [qtp418304857-44 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+12:21:52.855 [qtp418304857-44 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+12:21:52.866 [qtp418304857-44 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:40:56.327 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:40:56.352 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:40:59.825 [qtp418304857-24 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:40:59.842 [qtp418304857-24 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:41:04.604 [qtp418304857-30 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:41:04.611 [qtp418304857-30 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:41:37.099 [qtp418304857-29 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:41:37.102 [qtp418304857-29 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:42:48.677 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:42:48.687 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:43:10.016 [qtp418304857-26 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:43:10.032 [qtp418304857-26 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:43:11.403 [qtp418304857-26 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:43:11.407 [qtp418304857-26 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:43:16.939 [qtp418304857-27 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:43:16.943 [qtp418304857-27 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:43:18.448 [qtp418304857-26 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:43:18.449 [qtp418304857-26 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:44:08.392 [qtp418304857-25 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:44:08.396 [qtp418304857-25 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:44:10.642 [qtp418304857-25 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:44:10.653 [qtp418304857-25 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:47:56.143 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:47:56.153 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:48:12.374 [qtp418304857-32 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:48:12.374 [qtp418304857-32 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:48:14.306 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:48:14.313 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:48:23.452 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:48:23.457 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:50:32.241 [qtp418304857-38 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:51:21.860 [qtp418304857-38 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:51:45.965 [qtp418304857-37 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+13:51:45.990 [qtp418304857-37 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+13:56:14.769 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:01:55.124 [qtp418304857-28 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:06:34.998 [qtp418304857-39 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:06:35.010 [qtp418304857-39 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:06:37.069 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:06:37.070 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=4] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:06:43.578 [qtp418304857-43 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:06:43.586 [qtp418304857-43 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:06:58.621 [qtp418304857-43 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:06:58.626 [qtp418304857-43 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:07:50.084 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:07:50.088 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:20:04.791 [qtp418304857-49 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:20:04.793 [qtp418304857-49 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:39:21.920 [qtp418304857-39 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:39:21.925 [qtp418304857-39 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:56:36.183 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:56:36.189 [qtp418304857-31 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:57:52.684 [qtp418304857-40 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:57:52.698 [qtp418304857-40 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+14:58:23.863 [qtp418304857-32 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+14:58:23.955 [qtp418304857-32 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.action.web.user.BMSEmployeeSecretAction - null
+15:02:28.972 [qtp418304857-41 - /api/User/InfoSecret?ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+17:40:24.083 [qtp418304857-32 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME+k=&User_Password=ptiE4wvfvuw=&User_ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+17:40:24.118 [qtp418304857-32 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME+k=&User_Password=ptiE4wvfvuw=&User_ModuleID=9] ERROR com.mes.server.action.web.homepage.HomePageGroupUpdateAction - null
+17:41:19.584 [qtp418304857-30 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME+k=&User_Password=ptiE4wvfvuw=&User_ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+17:54:57.578 [qtp418304857-25 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME+k=&User_Password=ptiE4wvfvuw=&User_ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+17:54:57.629 [qtp418304857-25 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME+k=&User_Password=ptiE4wvfvuw=&User_ModuleID=9] ERROR com.mes.server.action.web.homepage.HomePageGroupUpdateAction - null
+17:55:07.500 [qtp418304857-32 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME+k=&User_Password=ptiE4wvfvuw=&User_ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+17:55:07.535 [qtp418304857-32 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME+k=&User_Password=ptiE4wvfvuw=&User_ModuleID=9] ERROR com.mes.server.action.web.homepage.HomePageGroupUpdateAction - null
+17:59:43.766 [qtp418304857-40 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME%252Bk%253D&User_Password=ptiE4wvfvuw%253D&User_ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+17:59:44.562 [qtp418304857-40 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME%252Bk%253D&User_Password=ptiE4wvfvuw%253D&User_ModuleID=9] ERROR com.mes.server.action.web.homepage.HomePageGroupUpdateAction - null
+18:14:01.752 [qtp418304857-29 - /api/HomePage/GroupAll?callback=jQuery31106824025542102543_1570529641541&Type=1&Remote=1&User_ID=dJ1F9RuME%2Bk%3D&User_Password=ptiE4wvfvuw%3D&User_ModuleID=9&_=1570529641542] ERROR com.mes.server.utils.DesUtil - Null input buffer
+18:14:01.755 [qtp418304857-29 - /api/HomePage/GroupAll?callback=jQuery31106824025542102543_1570529641541&Type=1&Remote=1&User_ID=dJ1F9RuME%2Bk%3D&User_Password=ptiE4wvfvuw%3D&User_ModuleID=9&_=1570529641542] ERROR com.mes.server.action.web.homepage.HomePageGroupAllAction - null
+18:17:48.334 [qtp418304857-30 - /api/HomePage/GroupAll?callback=jQuery31106152040196607833_1570529863388&Type=1&Remote=1&User_ID=dJ1F9RuME%2Bk%3D&User_Password=ptiE4wvfvuw%3D&User_ModuleID=9&_=1570529863389] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+18:17:48.374 [qtp418304857-30 - /api/HomePage/GroupAll?callback=jQuery31106152040196607833_1570529863388&Type=1&Remote=1&User_ID=dJ1F9RuME%2Bk%3D&User_Password=ptiE4wvfvuw%3D&User_ModuleID=9&_=1570529863389] ERROR com.mes.server.action.web.homepage.HomePageGroupAllAction - null
+18:18:06.727 [qtp418304857-32 - /api/HomePage/GroupAll?callback=jQuery31101613630343042054_1570529886287&Type=1&Remote=1&User_ID=dJ1F9RuME%2Bk%3D&User_Password=ptiE4wvfvuw%3D&User_ModuleID=9&_=1570529886288] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+18:18:06.731 [qtp418304857-32 - /api/HomePage/GroupAll?callback=jQuery31101613630343042054_1570529886287&Type=1&Remote=1&User_ID=dJ1F9RuME%2Bk%3D&User_Password=ptiE4wvfvuw%3D&User_ModuleID=9&_=1570529886288] ERROR com.mes.server.action.web.homepage.HomePageGroupAllAction - null
+18:32:45.695 [qtp418304857-32 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME%252Bk%253D&User_Password=ptiE4wvfvuw%253D&User_ModuleID=9] ERROR com.mes.server.utils.DesUtil - bad BASE 64 In->
+18:32:45.724 [qtp418304857-32 - /api/HomePage/GroupUpdate?Remote=1&User_ID=dJ1F9RuME%252Bk%253D&User_Password=ptiE4wvfvuw%253D&User_ModuleID=9] ERROR com.mes.server.action.web.homepage.HomePageGroupUpdateAction - null
